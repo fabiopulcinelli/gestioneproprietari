@@ -8,13 +8,13 @@ import it.prova.gestioneproprietari.model.Automobile;
 public interface AutomobileService {
 	public List<Automobile> listAllAutomobile() throws Exception;
 
-	public Automobile caricaSingoloAbitante(Long id) throws Exception;
+	public Automobile caricaSingoloAutomobile(Long id) throws Exception;
 
 	public void aggiorna(Automobile automobileInstance) throws Exception;
 
 	public void inserisciNuovo(Automobile automobileInstance) throws Exception;
 
-	public void rimuovi(Long idAutomobileInstance) throws Exception;
+	public void rimuovi(Automobile automobileInstance) throws Exception;
 
 	//TODO
 	//METODI DA FARE
