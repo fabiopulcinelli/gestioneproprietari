@@ -3,15 +3,21 @@ package it.prova.gestioneproprietari.dao.automobile;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import it.prova.gestioneproprietari.model.Automobile;
 
 public class AutomobileDAOImpl implements AutomobileDAO {
 
+	private EntityManager entityManager;
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
 	@Override
 	public List<Automobile> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("from Automobile", Automobile.class).getResultList();
 	}
 
 	@Override
@@ -37,11 +43,4 @@ public class AutomobileDAOImpl implements AutomobileDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void setEntityManager(EntityManager entityManager) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

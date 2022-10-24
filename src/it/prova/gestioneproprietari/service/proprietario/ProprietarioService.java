@@ -14,7 +14,7 @@ public interface ProprietarioService {
 
 	public void inserisciNuovo(Proprietario proprietarioInstance) throws Exception;
 
-	public void rimuovi(Long idProprietarioInstance) throws Exception;
+	public void rimuovi(Proprietario proprietarioInstance) throws Exception;
 
 	//TODO
 	//METODI DA FARE

@@ -12,10 +12,10 @@ public class MyServiceFactory {
 	private static AutomobileService automobileServiceInstance = null;
 	private static ProprietarioService proprietarioServiceInstance = null;
 
-	public static AutomobileService getAbitanteServiceInstance() {
+	public static AutomobileService getAutomobileServiceInstance() {
 		if (automobileServiceInstance == null) {
 			automobileServiceInstance = new AutomobileServiceImpl();
-			automobileServiceInstance.setAbitanteDAO(MyDaoFactory.getAutomobileDAOInstance());
+			automobileServiceInstance.setAutomobileDAO(MyDaoFactory.getAutomobileDAOInstance());
 		}
 		return automobileServiceInstance;
 	}

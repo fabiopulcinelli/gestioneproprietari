@@ -20,5 +20,5 @@ public interface AutomobileService {
 	//METODI DA FARE
 	
 	//per injection
-	public void setAbitanteDAO(AutomobileDAO automobileDAO);
+	public void setAutomobileDAO(AutomobileDAO automobileDAO);
 }
