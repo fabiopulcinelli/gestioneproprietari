@@ -1,5 +1,6 @@
 package it.prova.gestioneproprietari.service.proprietario;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -125,6 +126,27 @@ public class ProprietarioServiceImpl implements ProprietarioService{
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public int contaProprietariDaAnnoImmatricolazione(Date annoInPoi) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			proprietarioDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return proprietarioDAO.contaProprietariDaAnnoImmatricolazione(annoInPoi);
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {

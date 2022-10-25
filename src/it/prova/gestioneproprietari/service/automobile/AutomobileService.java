@@ -17,7 +17,9 @@ public interface AutomobileService {
 	public void rimuovi(Automobile automobileInstance) throws Exception;
 
 	//TODO
-	//METODI DA FARE
+	public List<Automobile> trovaAutomobiliCodiceFiscale(String input) throws Exception;
+	
+	public List<Automobile> trovaAutomobiliConErrori() throws Exception;
 	
 	//per injection
 	public void setAutomobileDAO(AutomobileDAO automobileDAO);

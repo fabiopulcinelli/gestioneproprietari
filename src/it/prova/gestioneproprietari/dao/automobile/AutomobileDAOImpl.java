@@ -1,5 +1,6 @@
 package it.prova.gestioneproprietari.dao.automobile;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -48,5 +49,17 @@ public class AutomobileDAOImpl implements AutomobileDAO {
 			throw new Exception("Problema valore in input");
 		}
 		entityManager.remove(entityManager.merge(o));
+	}
+
+	@Override
+	public List<Automobile> findAllAutomobiliCodiceFiscaleStarts(String input) throws Exception {
+		TypedQuery<Automobile> query = entityManager.createQuery("from Automobile a join fetch a.proprietario WHERE codicefiscale LIKE ?1", Automobile.class);
+		return query.setParameter(1, input + "%").getResultList();
+	}
+
+	@Override
+	public List<Automobile> findAllAutomobiliConErrori() throws Exception {
+		TypedQuery<Automobile> query = entityManager.createQuery("from Automobile a join fetch a.proprietario WHERE (YEAR(?1) - YEAR(datadinascita)) < 18", Automobile.class);
+		return query.setParameter(1, new Date()).getResultList();
 	}
 }

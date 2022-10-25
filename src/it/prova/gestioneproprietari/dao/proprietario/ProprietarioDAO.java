@@ -1,9 +1,10 @@
 package it.prova.gestioneproprietari.dao.proprietario;
 
+import java.util.Date;
+
 import it.prova.gestioneproprietari.dao.IBaseDAO;
 import it.prova.gestioneproprietari.model.Proprietario;
 
 public interface ProprietarioDAO extends IBaseDAO<Proprietario> {
-	//TODO
-	//AGGIUNGERE METODI EXTRA
+	public int contaProprietariDaAnnoImmatricolazione(Date annoInPoi) throws Exception;
 }

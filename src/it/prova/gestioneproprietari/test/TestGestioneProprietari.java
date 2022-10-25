@@ -35,6 +35,20 @@ public class TestGestioneProprietari {
 			testEliminaAutomobile(automobileService, proprietarioService);
 			System.out.println(
 					"In tabella Automobile ci sono " + automobileService.listAllAutomobile().size() + " elementi.");
+/*			
+			testContaProprietariDaAnnoImmatricolazione(automobileService, proprietarioService);
+			System.out.println(
+					"In tabella Automobile ci sono " + automobileService.listAllAutomobile().size() + " elementi.");
+*/
+			
+			testTrovaAutomobiliCodiceFiscale(automobileService, proprietarioService);
+			System.out.println(
+					"In tabella Automobile ci sono " + automobileService.listAllAutomobile().size() + " elementi.");
+			
+			testTrovaAutomobiliConErrori(automobileService, proprietarioService);
+			System.out.println(
+					"In tabella Automobile ci sono " + automobileService.listAllAutomobile().size() + " elementi.");
+			
 		} catch (Throwable e) {
 			e.printStackTrace();
 		} finally {
@@ -76,6 +90,18 @@ public class TestGestioneProprietari {
 		System.out.println(".......testEliminaProprietario fine: PASSED.............");
 	}
 	
+	private static void testContaProprietariDaAnnoImmatricolazione(AutomobileService automobileService, ProprietarioService proprietarioService) throws Exception {
+		System.out.println(".......testContaProprietariDaAnnoImmatricolazione inizio.............");
+		
+		List<Proprietario> listaPropretariPresenti = proprietarioService.listAllProprietario();
+		if (listaPropretariPresenti.isEmpty())
+			throw new RuntimeException("testContaProprietariDaAnnoImmatricolazione fallito: non ci sono municipi a cui collegarci ");
+		Date data = new SimpleDateFormat("yyyy-MM-dd").parse("2000-01-01");
+		
+		proprietarioService.contaProprietariDaAnnoImmatricolazione(data);
+		
+		System.out.println(".......testContaProprietariDaAnnoImmatricolazione fine: PASSED.............");
+	}
 	
 	////AUTOMOBILI
 	
@@ -119,5 +145,27 @@ public class TestGestioneProprietari {
 			throw new RuntimeException("testRimozioneAbitante fallito: record non cancellato ");
 		
 		System.out.println(".......testEliminaAutomobile fine: PASSED.............");
+	}
+	
+	private static void testTrovaAutomobiliCodiceFiscale(AutomobileService automobileService, ProprietarioService proprietarioService) throws Exception {
+		System.out.println(".......testTrovaAutomobiliCodiceFiscale inizio.............");
+		
+		List<Automobile> temp = automobileService.trovaAutomobiliCodiceFiscale("P");
+		if(temp.size() < 1) {
+			throw new RuntimeException("testTrovaAutomobiliCodiceFiscale fallito: record previsti non trovati ");
+		}
+		
+		System.out.println(".......testTrovaAutomobiliCodiceFiscale fine: PASSED.............");
+	}
+	
+	private static void testTrovaAutomobiliConErrori(AutomobileService automobileService, ProprietarioService proprietarioService) throws Exception {
+		System.out.println(".......testTrovaAutomobiliConErrori inizio.............");
+		
+		List<Automobile> temp = automobileService.trovaAutomobiliConErrori();
+		if(temp.size() < 1) {
+			throw new RuntimeException("testTrovaAutomobiliConErrori fallito: record previsti non trovati ");
+		}
+		
+		System.out.println(".......testTrovaAutomobiliConErrori fine: PASSED.............");
 	}
 }

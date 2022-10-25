@@ -126,4 +126,40 @@ public class AutomobileServiceImpl implements AutomobileService{
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
+
+	@Override
+	public List<Automobile> trovaAutomobiliCodiceFiscale(String input) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			automobileDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return automobileDAO.findAllAutomobiliCodiceFiscaleStarts(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public List<Automobile> trovaAutomobiliConErrori() throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			automobileDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return automobileDAO.findAllAutomobiliConErrori();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 }
